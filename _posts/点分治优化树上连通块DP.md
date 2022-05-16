@@ -1,6 +1,10 @@
 ---
 title: 点分治优化树上连通块DP
-tags: 点分治 dp
+categories:
+- OI算法
+tags:
+- 点分治
+- dp
 ---
 
 # qyc博客学习2-点分治优化树上连通块DP
