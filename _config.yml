@@ -106,7 +106,7 @@ deploy:
   repository: https://github.com/FireInIceCode/fireinicecode.github.io.git
 
 encrypt: # hexo-blog-encrypt
-  encrypt: # hexo-blog-encrypt
+  enable: true
   abstract: 涉及人类安全的重大机密,需输入密码查看.
   message: 涉及人类安全的重大机密,需输入密码查看.
   theme: blink

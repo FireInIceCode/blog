@@ -559,7 +559,7 @@ canvas_nest:
 # Typewriter Effect (打字效果)
 # https://github.com/disjukr/activate-power-mode
 activate_power_mode:
-  enable: true
+  enable: false
   colorful: true # open particle animation (冒光特效)
   shake: true #  open shake (抖動特效)
   mobile: false
@@ -798,7 +798,7 @@ note:
 # It may contain bugs and unstable, give feedback when you find the bugs.
 # https://github.com/MoOx/pjax
 pjax:
-  enable: false
+  enable: true
   exclude:
     # - xxxx
     # - xxxx
