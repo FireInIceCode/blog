@@ -41,3 +41,7 @@
     display: inline-block !important;
     margin: 0 !important;
 }
+
+p.has-jax{
+    overflow: visible !important;
+}
