@@ -28,7 +28,7 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render: [grapheditor/**/*]
+skip_render: [grapheditor/**/*,js/**/*,img/**/*,css/**/*]
 
 # Writing
 new_post_name: :year-:month-:day-:title.md # File name of new posts
@@ -104,9 +104,16 @@ theme: butterfly
 deploy:
   type: git
   repository: https://github.com/FireInIceCode/fireinicecode.github.io.git
+
 encrypt: # hexo-blog-encrypt
   encrypt: # hexo-blog-encrypt
   abstract: 涉及人类安全的重大机密,需输入密码查看.
   message: 涉及人类安全的重大机密,需输入密码查看.
   theme: blink
   wrong_pass_message: Wrong Password
+
+# hexo-admin authentification
+admin:
+  username: fireinice
+  password_hash: $2a$10$0hEXLgFbvt8Eidxm.UtBFuVRJRCrvM.l12QOH0TkEQj2MFONUAeQW
+  secret: fireburneverything
