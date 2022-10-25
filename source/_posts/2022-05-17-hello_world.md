@@ -6,6 +6,8 @@ show: true
 istop: true
 tags: 
 - 杂项
+
+cover: /img/2022-10-25-13-56-03-image.png
 ---
 
 ## Hello World

@@ -114,6 +114,6 @@ encrypt: # hexo-blog-encrypt
 
 # hexo-admin authentification
 admin:
-  username: fireinice
-  password_hash: $2a$10$0hEXLgFbvt8Eidxm.UtBFuVRJRCrvM.l12QOH0TkEQj2MFONUAeQW
+  username: fireincie
+  password_hash: 
   secret: fireburneverything
