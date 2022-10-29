@@ -15,7 +15,9 @@ def translatexmark(s):
             if inlatex and ls[i-1][-1]==' ':
                 ls[i-1]=''
             inlatex=not inlatex
-    return ''.join(ls)
+    s=''.join(ls)
+    s=s.replace('\n\n$$\n\n','\n$$\n\n')
+    return s
 
 def transdot(s):
     rule=('，。：；！？￥（）【】“‘《》',',.:;!?$()[]\"\'<>')
@@ -31,6 +33,7 @@ def transstr(s):
 def transone(name):
     with open(name,'r',encoding='utf-8') as f:
         s=f.read()
+    print(name)
     with open(name,'w',encoding='utf-8') as f:
         f.write(transstr(s))
 
