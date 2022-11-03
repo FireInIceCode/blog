@@ -543,7 +543,7 @@ canvas_ribbon:
 
 # Fluttering Ribbon (動態彩帶)
 canvas_fluttering_ribbon:
-  enable: false
+  enable: true
   mobile: false
 
 # canvas_nest
@@ -813,9 +813,9 @@ aplayerInject:
 # position 彈窗位置
 # 可選 top-left / top-center / top-right / bottom-left / bottom-center / bottom-right
 snackbar:
-  enable: false
+  enable: true
   position: bottom-left
-  bg_light: '#49b1f5' # The background color of Toast Notification in light mode
+  bg_light: '#a8a8ff' # The background color of Toast Notification in light mode
   bg_dark: '#1f1f1f' # The background color of Toast Notification in dark mode
 
 # https://instant.page/
@@ -865,6 +865,8 @@ inject:
     - <script src="/js/jquery-3.6.1.min.js"></script>
     - <script src="/js/emoji.js"></script>
     - <script src="/js/blog.js"></script>
+    - <script src="/js/canvasparticle.js"></script>
+    - <script src="/js/particletext.js"></script>
     # - <script src="xxxx"></script>
 
 # CDN
