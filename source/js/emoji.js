@@ -200,8 +200,8 @@ function applyEmoji(str){
     return str;
 }
 
-window.addEventListener('load',(event)=>{
+window.addEventListener('DOMContentLoaded',(event)=>{
     var container=document.querySelector('.post-content');
     container.innerHTML=applyEmoji(container.innerHTML);
-    MathJax.typeset();
-})
+    document.dispatchEvent(new Event('ContentInited'));
+});
