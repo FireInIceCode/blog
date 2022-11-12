@@ -15,6 +15,14 @@ function parseCommand(str, graph) {
         }else{
             alert("Incorrect format");
         }
+    } else if(words[0]=='fix-all'){
+        if(words.length!=1){
+            alert("Incorrect format");
+        }else{
+            for(var node of graph.nodes){
+                node.fixed=true;
+            }
+        }
     } else {
         alert('Incorrect command');
     }
