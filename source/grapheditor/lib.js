@@ -77,6 +77,10 @@ var G = (function () {
     Node.prototype.del = function () {
         this.el.parentElement.removeChild(this.el);
     }
+    Node.prototype.fix = function () {
+        this.el.classList.add('gfixed');
+        this.fixed = true;
+    }
     function Edge(u, v, w) {
         this.u = u;
         this.v = v;
@@ -125,10 +129,10 @@ var G = (function () {
             if (Math.abs(u.vx * t) > 0.1e-3) u.x += u.vx * t;
             if (Math.abs(u.vy * t) > 0.1e-3) u.y += u.vy * t;
 
-            u.x=Math.max(u.x,0);
-            u.x=Math.min(u.x,Config.c_w);
-            u.y=Math.max(u.y,0);
-            u.y=Math.min(u.y,Config.c_h);
+            u.x = Math.max(u.x, 0);
+            u.x = Math.min(u.x, Config.c_w);
+            u.y = Math.max(u.y, 0);
+            u.y = Math.min(u.y, Config.c_h);
         }
 
         for (var u of this.nodes) {

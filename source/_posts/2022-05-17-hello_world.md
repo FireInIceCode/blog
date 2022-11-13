@@ -54,6 +54,8 @@ latex里不能出现\{\{...\}\},因为这个是jekyll的模板语法.///fn
 
 其实是代填坑
 
+### OI
+
 - P5501 来者不拒,去者不追
 - P3979 遥远的国度
 - CF187D BRT Contract
@@ -64,5 +66,15 @@ latex里不能出现\{\{...\}\},因为这个是jekyll的模板语法.///fn
 - 分散层叠
 - JOI刷题
 - CFdp,greedy刷题
+- 所有todo
 
 啊等着慢慢写吧
+
+啊好像现在坑越来越多了啊...怎么办怎么办...
+
+### 其他
+
+- ProblemCopier
+- 简易数据生成器
+- X-Hydro转换器
+- GraphEditor
