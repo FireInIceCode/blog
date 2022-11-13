@@ -24,7 +24,7 @@ tags:
   
   - 代码:
     
-    ```c
+    ```cpp
     void dfs(int u,int rt=0){
       if(rt==0)rt=u;
       dfn[u]=low[u]=++dcnt;
