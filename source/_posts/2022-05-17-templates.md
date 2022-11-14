@@ -58,6 +58,37 @@ tags:
   - 条件:dfs时把点入栈,在dfn\[u\]=low\[v\]时,要退出dfs时若满足条件一直弹栈到把自己也弹了,弹出部分都是同一scc
   - 理解:同一强联通分量在dfs中是连续的一块,在栈里也是
   - 细节:low不更新横叉边指向的点(已经被访问却在栈外)
+- 圆方树
+  - 仙人掌版
+    - ```cpp
+      void addpoints(int stop,int ex) {
+          scnt++;
+          tadd_edge(ex,scnt);
+          int v;
+          do{
+              v=stk.top();
+              tadd_edge(v,scnt);
+              stk.pop();
+          }while(v!=stop);
+      }
+      void tarjan(int u) {
+          dfn[u] = low[u] = ++dcnt;
+          stk.push(u);
+          for (int v : G[u])
+              if (dfn[v])
+                  low[u] = min(low[u], dfn[v]);
+              else {
+                  tarjan(v);
+                  low[u] = min(low[u], low[v]);
+                  if (low[v] >= dfn[u])
+                      if (stk.top() == v) {
+                          tadd_edge(u,v);
+                          stk.pop();
+                      } else
+                          addpoints(v,u);
+              }
+      }
+      ```
 
 ### 差分约束
 
