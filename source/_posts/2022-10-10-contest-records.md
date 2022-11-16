@@ -333,6 +333,8 @@ ZR题
 
 ## ZSContest 20221116 on Vjudge
 
+赛时会3个,T4没longlong半天没查出来///fn
+
 ### abc259h
 
 > 给定 $n\times n$ 矩形,每个位置有值 $a_i$ ,只能往下或往右走,问有多少起点终点值相同的格路径.
