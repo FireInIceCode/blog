@@ -9,13 +9,13 @@ def translatexmark(s):
     inlatex = False
     for i, c in enumerate(s):
         if c == '$' and (i == len(s)-1 or s[i+1] != '$') and (i == 0 or s[i-1] != '$'):
-            if not inlatex and (i == 0 or s[i-1] not in (' ', '\n', *markrule[0],*markrule[1]) and ls[i+1] != ' '):
+            if not inlatex and (i == 0 or s[i-1] not in (' ', '\n', *markrule[0],*markrule[1]) and ls[i-1] != ' '):
                 ls[i] = ' $'
             if not inlatex and s[i+1] == ' ':
                 ls[i+1] = ''
-            if inlatex and (i == len(s)-1 or s[i+1] not in (' ', '\n', *markrule[0]),*markrule[1] and ls[i+1] != ' '):
+            if inlatex and (i == len(s)-1 or s[i+1] not in (' ', '\n', *markrule[0],*markrule[1]) and ls[i+1] != ' '):
                 ls[i] = '$ '
-            if inlatex and ls[i-1][-1] == ' ':
+            if inlatex and s[i-1] == ' ':
                 ls[i-1] = ''
             inlatex = not inlatex
         if c == '|' and inlatex:
@@ -28,13 +28,20 @@ def translatexmark(s):
 def transdot(s):
     for a, b in zip(markrule[0], markrule[1]):
         s = s.replace(a, b)
+
     return s
 
 
 def transstr(s):
-    s = translatexmark(s)
-    s = transdot(s)
-    return s
+    ls=s.split('```')
+    for i,l in enumerate(ls):
+        if i&1:
+            continue
+        ns=l
+        ns = transdot(ns)
+        ns = translatexmark(ns)
+        ls[i]=ns
+    return '```'.join(ls)
 
 
 def transone(name):

@@ -3,7 +3,7 @@ title: 点分治优化树上连通块DP
 subtitle: 高级啊
 layout: post
 show: true
-istop: false
+top: false
 tags:
 - 点分治
 - dp

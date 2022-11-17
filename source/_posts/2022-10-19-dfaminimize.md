@@ -3,7 +3,7 @@ title: DFA最小化
 subtitle: bot科技
 layout: post
 show: true
-istop: false
+top: false
 tags: 
 - dfa最小化
 - 咕咕

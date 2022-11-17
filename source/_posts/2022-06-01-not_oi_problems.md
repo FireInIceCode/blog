@@ -3,7 +3,7 @@ title: 非信竞杂题
 subtitle: 跨界
 layout: post
 show: false
-istop: false
+top: false
 tags: 
 - 杂项
 - 数学

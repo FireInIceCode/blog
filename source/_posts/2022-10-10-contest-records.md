@@ -3,7 +3,7 @@ title: 比赛记录
 subtitle: 挂分记录
 layout: post
 show: true
-istop: false
+top: false
 tags: 
 - 杂项
 - 日志

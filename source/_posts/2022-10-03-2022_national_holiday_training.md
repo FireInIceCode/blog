@@ -3,7 +3,7 @@ title: 国庆集训
 subtitle: 打不过小朋友了
 layout: post
 show: true
-istop: false
+top: false
 tags:
 
 - 日志
