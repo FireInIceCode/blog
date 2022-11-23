@@ -1,9 +1,9 @@
 ---
 title: 杂题(tricks)
-subtitle: 零碎
+subtitle: 碎碎题
 layout: post
 show: true
-top: false
+top: 1
 tags: 
 - 日志
 - 杂题

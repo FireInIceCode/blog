@@ -3,7 +3,7 @@ title: 模板复习
 subtitle: 打不对
 layout: post
 show: false
-top: false
+top: 0
 tags: 
 - 模板
 ---

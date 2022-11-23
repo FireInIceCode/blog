@@ -3,7 +3,7 @@ title: 感性理解网络单纯形
 subtitle: 我网络流1e5
 layout: post
 show: true
-top: false
+top: 0
 tags: 
 - 图论 
 - 网络流

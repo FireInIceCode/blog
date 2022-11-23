@@ -3,7 +3,7 @@ title: NOI系列题目
 subtitle: 咕咕
 layout: post
 show: false
-top: false
+top: 0
 tags: 
 - 日志
 - 咕咕
