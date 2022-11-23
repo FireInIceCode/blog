@@ -197,6 +197,7 @@ function applyEmoji(str){
     for(var i in replaceElement){
         str=str.replace(new RegExp(i,'g'),'<img class="emoji-img" src="'+replaceElement[i]+'">');
     }
+    str=str.replace(/\\<br>/g,'\\\\<br>');
     return str;
 }
 
