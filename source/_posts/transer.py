@@ -2,6 +2,7 @@ import os
 import re
 
 markrule = ('，。：；！？￥（）【】“‘《》', ',.:;!?$()[]\"\'<>')
+space=',.:;!?'
 
 
 def translatexmark(s):
@@ -28,7 +29,8 @@ def translatexmark(s):
 def transdot(s):
     for a, b in zip(markrule[0], markrule[1]):
         s = s.replace(a, b)
-
+    for a in space:
+        s= re.sub('\\'+a+'(\S)',lambda c:a+' '+c.group(1),s)
     return s
 
 
