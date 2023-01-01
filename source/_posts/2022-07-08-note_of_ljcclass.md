@@ -3,7 +3,7 @@ title: LJC讲dp
 subtitle: 膜
 layout: post
 show: false
-top: false
+top: 0
 tags: 
 - dp
 - 笔记

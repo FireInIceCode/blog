@@ -3,7 +3,7 @@ title: 机房杂题
 subtitle: 藏龙卧虎
 layout: post
 show: false
-top: false
+top: 0
 tags: 
 - 日志
 - 杂题
