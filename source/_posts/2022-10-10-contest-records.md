@@ -9,7 +9,7 @@ tags:
 - 日志
 - 咕咕
 password: boomedzero
-cover: /img/2022-11-23-20-19-22-image. png
+cover: /img/2022-11-23-20-19-22-image.png
 
 ---
 
@@ -439,7 +439,7 @@ $$
 
 ### D. draw
 
-> ! [picture 1](/img/2022-11-22-14-50-33-image. png)  
+> ! [picture 1](/img/2022-11-22-14-50-33-image.png)  
 > 
 > $n, q\le 3\times 10^5, a_i\le 4$
 

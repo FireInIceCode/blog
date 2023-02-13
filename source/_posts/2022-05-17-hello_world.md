@@ -7,7 +7,7 @@ top: 10
 tags: 
 - 杂项
 
-cover: /img/2022-10-25-13-56-03-image. png
+cover: /img/2022-10-25-13-56-03-image.png
 ---
 
 ## Hello World
@@ -42,7 +42,7 @@ jekyll又迁移到hexo为了支持加密文章.
 
 死亡特点是没有标题, 并且时间不对(为你`push`的日期)
 
-latex里不能出现\{\{. . . \}\}, 因为这个是jekyll的模板语法. ///fn
+latex里不能出现\{ \{ . . .  \} \}, 因为这个是jekyll的模板语法. ///fn
 
 死亡特点是居中对齐的latex源码.
 
