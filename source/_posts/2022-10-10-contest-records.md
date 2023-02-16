@@ -595,3 +595,4 @@ towrite
 对于每个位置$a_i$,从左到右考虑$j$是否能形成贡献,此时假设现在已经有$i,j$,那么对于元素$k$,显然应该与$i,j$近的那个贡献,于是如果和$i$贡献,那么$\vert a_k-a_i\vert \le \dfrac{1}{2}\cdot\vert a_i-a_j \vert$,所以只有$n \log n$对
 
 直接主席树和二维数点复杂度2log
+
