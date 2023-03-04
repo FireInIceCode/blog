@@ -7,7 +7,7 @@ top: 0
 tags: 
 - dfa最小化
 - 咕咕
-cover: /img/2022-11-23-20-15-14-image. png
+cover: /img/2022-11-23-20-15-14-image.png
 
 ---
 
