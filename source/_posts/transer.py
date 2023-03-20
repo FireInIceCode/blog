@@ -42,6 +42,7 @@ def transstr(s):
         ns=l
         ns = transdot(ns)
         ns = translatexmark(ns)
+        ns = re.sub('\!\s*\[(.*?)\]\((.*?)\)',lambda r:f'![{r.group(1)}]({r.group(2).replace(" ","")})',ns)
         ls[i]=ns
     return '```'.join(ls)
 
