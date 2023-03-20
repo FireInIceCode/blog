@@ -60,7 +60,7 @@ n为点数, m为边数, 先假设图为**联通**的(显然不联通什么也不
 
 对于一条边, 我们可以沿着它在一个环上推动一个流:
 
-! [](https: //raw. githubusercontent. com/FireInIceCode/imgs/main/imgs/202205111557679.png)
+! [](https: //raw. githubusercontent. com/FireInIceCode/imgs/main/imgs/202205111557679. png)
 
 如图, 如果图中存在这一一个环, 我们可以沿着它推送10的流量, 容易发现仍然满足流量平衡(一个环, 进去的和出去的一样).
 
@@ -288,7 +288,7 @@ Q: 为什么我用这个跑不过luogu费用流板子上最优解(一个EK算法
 
 A: 这是个笑话
 
-! [](https: //raw. githubusercontent. com/FireInIceCode/imgs/main/imgs/202205111717746.png)--摘自你谷最优解
+! [](https: //raw. githubusercontent. com/FireInIceCode/imgs/main/imgs/202205111717746. png)--摘自你谷最优解
 
 ## 参考:
 
