@@ -355,12 +355,12 @@ ZR题
 于是根号分治, 出现次数大于 $\sqrt n$ 的用第一种, 出现次数小于 $\sqrt n$ 的用第二种. 第一部分复杂度显然 $n\sqrt n$ , 第二部分是
 
 $$
-\begin{array}{c}
+\begin{gathered}
     \max \sum {a_i}^2\\
     s. t.
     \sum a_i=n
     \\ a_i\le \sqrt n
-\end{array}
+\end{gathered}
 $$
 
 这个式子量级是经典的 $n \sqrt n$
