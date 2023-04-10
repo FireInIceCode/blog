@@ -35,6 +35,10 @@ def transdot(s):
 
 
 def transstr(s):
+    a=s.split('---')[1:]
+    head=a[0]
+    s='---'.join(a[1:])
+
     ls=s.split('```')
     for i,l in enumerate(ls):
         if i&1:
@@ -44,7 +48,7 @@ def transstr(s):
         ns = translatexmark(ns)
         ns = re.sub('\!\s*\[(.*?)\]\((.*?)\)',lambda r:f'![{r.group(1)}]({r.group(2).replace(" ","")})',ns)
         ls[i]=ns
-    return '```'.join(ls)
+    return '---'+head+'---'+'```'.join(ls)
 
 
 def transone(name):
