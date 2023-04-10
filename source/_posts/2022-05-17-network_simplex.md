@@ -292,6 +292,6 @@ A: 这是个笑话
 
 ## 参考:
 
-[[Tutorial] Network simplex - Codeforces](https: //codeforces. com/blog/entry/94190) 好文, 就是从这学的
+[[Tutorial] Network simplex - Codeforces](https://codeforces.com/blog/entry/94190) 好文, 就是从这学的
 
-[矩阵角度讲解](https: //www. cs. upc. edu/~erodri/webpage/cps/theory/lp/network/slides. pdf)
+[矩阵角度讲解](https://www.cs.upc.edu/~erodri/webpage/cps/theory/lp/network/slides.pdf)

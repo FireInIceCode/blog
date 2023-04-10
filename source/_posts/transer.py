@@ -34,6 +34,9 @@ def transdot(s):
     return s
 
 
+def translink(s):
+    return re.sub('(\!?)\[(.*?)\]\((.*?)\)',lambda r:f'{r.group(1)}[{r.group(2)}]({r.group(3).replace(" ","")})',s)
+
 def transstr(s):
     a=s.split('---')[1:]
     head=a[0]
@@ -45,10 +48,13 @@ def transstr(s):
             continue
         ns=l
         ns = transdot(ns)
+        ns = translink(ns)
         ns = translatexmark(ns)
         ns = re.sub('\!\s*\[(.*?)\]\((.*?)\)',lambda r:f'![{r.group(1)}]({r.group(2).replace(" ","")})',ns)
         ls[i]=ns
-    return '---'+head+'---'+'```'.join(ls)
+    s=('---'+head+'---'+'```'.join(ls))
+    return s
+
 
 
 def transone(name):

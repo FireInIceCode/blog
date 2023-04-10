@@ -22,7 +22,7 @@ qyc只摆了一个优化连通块背包dp的例题, 所以我理解并不透彻\
 
 适用于解决合并困难而插入一个点较简单的计数dp (也可能不是计数? 但这种划分还能怎么用没见过)
 
-#### 例题[Tree Cutting - HDU 5909 - Virtual Judge (vjudge. net)](https: //vjudge. net/problem/HDU-5909):
+#### 例题[Tree Cutting - HDU 5909 - Virtual Judge (vjudge. net)](https://vjudge.net/problem/HDU-5909):
 
 ##### 题意:
 
@@ -181,8 +181,8 @@ HDU难用极了, 建议写完直接用我的拍一拍就行了
 
 #### 参考:
 
-[树分治学习笔记 - ShanLunjiaJian的blog - 洛谷博客 (luogu. com. cn)](https: //www. luogu. com. cn/blog/YouAreDalao/shu-fen-zhi-notes)包含这个内容, 不过不如下面那个详细
+[树分治学习笔记 - ShanLunjiaJian的blog - 洛谷博客 (luogu. com. cn)](https://www.luogu.com.cn/blog/YouAreDalao/shu-fen-zhi-notes)包含这个内容, 不过不如下面那个详细
 
-[点分治优化dp学习笔记 - ShanLunjiaJian的blog - 洛谷博客 (luogu. com. cn)](https: //www. luogu. com. cn/blog/YouAreDalao/dian-fen-zhi-you-hua-dp)对此有更抽象泛华的解释
+[点分治优化dp学习笔记 - ShanLunjiaJian的blog - 洛谷博客 (luogu. com. cn)](https://www.luogu.com.cn/blog/YouAreDalao/dian-fen-zhi-you-hua-dp)对此有更抽象泛华的解释
 
-[hdu5909 (点分治+dfs序上树形DP_TeJoy的博客-CSDN博客](https: //blog. csdn. net/weixin_45539557/article/details/115713573)讲了一种dfs序满足连通块限制的trick
+[hdu5909 (点分治+dfs序上树形DP_TeJoy的博客-CSDN博客](https://blog.csdn.net/weixin_45539557/article/details/115713573)讲了一种dfs序满足连通块限制的trick
