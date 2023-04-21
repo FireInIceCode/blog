@@ -101,9 +101,12 @@ theme: butterfly
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
+# deploy:
+#   type: git
+#   repository: https://github.com/FireInIceCode/fireinicecode.github.io.git
 deploy:
   type: git
-  repository: https://github.com/FireInIceCode/fireinicecode.github.io.git
+  repository: https://gitee.com/fireinice/blogsite.git
 
 encrypt: # hexo-blog-encrypt
   enable: true
