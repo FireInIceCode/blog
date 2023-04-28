@@ -1,11 +1,11 @@
 window.addEventListener('load', function () {
-    const FOLD_LEN = 100
+    const FOLD_LEN = 150;
     let quotes = $('blockquote');
     quotes.wrap('<div class="mfolder"></div>')
     let folders = $('div.mfolder');
     for (var i = 0; i < folders.length; i++) {
         let div = folders[i];
-        if (div.children[0].innerText.length > FOLD_LEN) {
+        if (div.children[0].clientHeight > FOLD_LEN) {
             div.classList.add('mfold');
         } else {
             div.classList.add('munfold');
