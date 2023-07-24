@@ -446,3 +446,44 @@ void fwtXor(int *f,int x){
 别把与和或弄反, 异或最后x是1(正变换)或1/2(逆变换)
 
 输出时要注意把数弄回正的, 因为减法过程会出负数
+
+### NTT
+
+```cpp
+void pre(int w, int* rev) {
+    int n=1<<w;
+    for (int i = 0; i < n; i++)
+        rev[i] = (rev[i >> 1]>>1) | ((i & 1)<<(w-1));
+}
+void bittrans(int n, ll* f) {
+    for (int i = 0; i < n; i++)
+        if (i < rev[i])
+            swap(f[i], f[rev[i]]);
+}
+ll fpow(ll a,int b){
+    if(b==0)return 1;
+    if(b&1)return fpow(a*a%P,b/2)*a%P;
+    else return fpow(a*a%P,b/2);
+}
+void ntt(int n,ll* f,bool op){
+    ll g=3,invg=fpow(g,P-2);
+    bittrans(n,f);
+    for(int l=2;l<=n;l<<=1){
+        ll wn=fpow(op?g:invg,(P-1)/l);
+        int mid=l>>1;
+        for(int p=0;p<n;p+=l){
+            ll w=1;
+            for(int i=0;i<mid;i++){
+                ll x=f[p+i],y=f[p+mid+i]*w%P;
+                f[p+i]=(x+y)%P;
+                f[p+mid+i]=(x-y+P)%P;
+                w=(w*wn)%P;
+            }
+        }
+    }
+    if(!op){
+        ll invn=fpow(n,P-2);
+        for(int i=0;i<n;i++)f[i]=f[i]*invn%P;
+    }
+}
+```
