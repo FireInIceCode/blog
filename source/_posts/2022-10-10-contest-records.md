@@ -15,6 +15,8 @@ cover: /img/2022-11-23-20-19-22-image.png
 
 # 比赛记录
 
+已经不光是比赛了,还有看的成套的题.
+
 ## ZSContest
 
 很久以前写下zscontest的编号. . . zs是什么啊?
