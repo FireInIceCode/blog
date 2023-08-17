@@ -111,4 +111,4 @@ function show() {
 	}, 1000);
 }
 
-// window.addEventListener('load', show);
+window.addEventListener('DOMContentLoaded', show);

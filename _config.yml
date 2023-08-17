@@ -28,7 +28,7 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render: [grapheditor/**/*,js/**/*,img/**/*,css/**/*]
+skip_render: [apps/**/*,js/**/*,img/**/*,css/**/*]
 
 # Writing
 new_post_name: :year-:month-:day-:title.md # File name of new posts
@@ -101,12 +101,12 @@ theme: butterfly
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
-# deploy:
-#   type: git
-#   repository: https://github.com/FireInIceCode/fireinicecode.github.io.git
 deploy:
   type: git
-  repository: https://gitee.com/fireinice/blogsite.git
+  repository: https://github.com/FireInIceCode/fireinicecode.github.io.git
+# deploy:
+#   type: git
+#   repository: https://gitee.com/fireinice/blogsite.git
 
 encrypt: # hexo-blog-encrypt
   enable: true

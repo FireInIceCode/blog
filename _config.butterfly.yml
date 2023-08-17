@@ -7,7 +7,8 @@ menu:
   Archives: /archives/ || fas fa-archive
   Tags: /tags/ || fas fa-tags
   Apps||fas fa-list:
-      GraphEditor: /grapheditor/ || fas-link
+      GraphEditor: /apps/grapheditor/ || fas-link
+      Gobang: /apps/p5chess/ || fas-link
   # Categories: /categories/ || fas fa-folder-open
   # List||fas fa-list:
   #   Music: /music/ || fas fa-music

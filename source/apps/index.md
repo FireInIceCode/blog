@@ -6,4 +6,5 @@ layout: page
 
 # Apps
 
-## [graph-editor](/grapheditor/)
+## [graph-editor](/apps/grapheditor/)
+## [gobang-editor](/apps/p5chess/)
