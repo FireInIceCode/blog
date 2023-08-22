@@ -1,88 +1,12 @@
-# CF1852B Imbalanced Arrays
+# P1315 [NOIP2011 提高组] 观光公交的 $n\log n\log k$ 做法
 
-给一个不需要递归构造的新方法()
+$k$ 终于成了 $\log$ 的一部分
 
-> 对于一个给定的长度为 $n$ 的数组 $A$，定义一个长度为 $n$ 的数组 $B$ 是不平衡的当且仅当以下全部条件满足：
-> 
-> - $-n \leq B_{i} \leq n$ 且 $B_{i} \ne 0$。即每个数在 $[-n,n]$ 内且不为 $0$。
-> 
-> - $\forall i，j \in [1,n]，B_{i} + B_{j} \neq 0$。即数组内不存在一对相反数。
-> 
-> - $\forall i \in [1,n]，\sum_{j = 1}^{n} [ \left (B_{i} + B_{j} \right) > 0] = A_{i}$。即对于任意的 $i$，数组中与 $B_{i}$ 和大于 $0$ 的数的个数恰好为 $A_{i}$。**注意： 这里需要计算本身。也即 $i$ 与 $j$ 可以相等。**
-> 
-> 请构造长度为 $n$ 的不平衡序列。
+![picture 0](/img/2023-08-22-09-38-50-image.png)  
 
-$b_i$ 要满足 $b_j>-b_i$ 的有恰好 $a_i$ 个，那么显然 $a_i$ 越大，$-b_i$ 就要越小，于是得到结论若 $a_i<a_j$，则 $b_i<b_j$。对于相等的 $a_i$ 显然可以随意钦定顺序。
 
-因为有了 $b$ 的顺序，可以确定每个 $a_i$ 的 $-b_i\in [b_{n-a_i},b_{n-a_i+1}]$，属于同一个区间的 $-b_i$ 又因为已知 $b_i$ 的大小关系而可以确定，于是我们得到了一条包含 $b_i$ 和 $-b_i$ 的大小关系的长 $2n$ 的不等式链，因为一共只有 $2n$ 个数，只要从小到大对应赋值，然后判定是否对应位置为相反数即可。
+假设读者已经都会了费用流的做法，因为是费用流，所以关于流量是凸的，我们考虑WQS二分加增量模拟费用流完成：
 
-```cpp
-#include <algorithm>
-#include <iostream>
-#include <vector>
-#define endl '\n'
-using namespace std;
-typedef long long ll;
-const int N = 1e5 + 500;
-int n;
-struct P {
-    int i, v;
-} a[N];
-bool cmp(P a, P b) {
-    return a.v < b.v;
-}
-bool cmp2(P a, P b) {
-    return a.i < b.i;
-}
-vector<int> bsep[N];
-int bs[N * 2];
-P b[N];
-void solve() {
-    cin >> n;
-    for (int i = 1; i <= n; i++) {
-        cin >> a[i].v;
-        a[i].i = i;
-    }
-    sort(a + 1, a + 1 + n, cmp);
-    for (int i = 1; i <= n; i++) {
-        bsep[n - a[i].v].push_back(i);
-    }
-    int p = 0;
-    for (int i = 0; i <= n; i++) {
-        if (i > 0)
-            bs[++p] = i;
-        sort(bsep[i].begin(), bsep[i].end(), greater<int>());
-        for (int v : bsep[i]) {
-            bs[++p] = -v;
-        }
-        bsep[i].clear();
-    }
-    int bcnt = 0;
-    for (int i = 1; i <= p; i++) {
-        if (bs[i] != -bs[2 * n - i + 1]) {
-            cout << "NO" << endl;
-            return;
-        }
-        if (bs[i] > 0)
-            b[++bcnt].v = i > n ? i - n : -(n - i + 1);
-    }
-    for (int i = 1; i <= n; i++)
-        b[i].i = a[i].i;
-    sort(b + 1, b + 1 + n, cmp2);
-    cout << "YES" << endl;
-    for (int i = 1; i <= n; i++) {
-        cout << b[i].v << " ";
-    }
-    cout << endl;
-}
+那么如图，加一个与S相连的点时要保证红边的方向，于是发现没有可行的负环/增广路，增加蓝色的点 $v$ 的时候增广路的形式是 $S\to u\to v\to T$ (浅蓝)，负环是 $T\to u\to v\to T$ (浅紫)，只有这两种决策，于是问题解决，开两个堆维护与 $S$ 相连，且 $S$ 到它的边上还能流的点和与 $T$ 相连，且它到 $T$ 的边有流量的点，用线段树维护中间的边的流量，用前缀和维护代价和，每次取出堆顶，计算两种决策的流量和代价，然后更新流量和答案。因为要控制流量，找增广路的时候要给代价额外加上二分的常数 $C$。
 
-int main() {
-    ios::sync_with_stdio(false);
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
-    return 0;
-}
-```
+这里很好的性质就是由于我们的决策，一条非汇边满了之后不可能再退流，一条汇边在它之后空了之后不可能在有流量，所以只要每次取出堆顶暴力check，不满足直接弹就是对的。又因为处理每个负环和增广路的时候，我们至少会让一条边的流满，所以模拟费用流的复杂度是 $n\log n$ 的，最后上一个WQS二分，复杂度成了 $n\log n\log k$，现在可以出 $k\le 10^9$ 了！
