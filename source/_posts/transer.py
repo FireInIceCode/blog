@@ -67,7 +67,7 @@ def transone(name):
 
 def main():
     for f in os.listdir('./'):
-        if f[-2:] == 'md':
+        if f[-2:] == 'md' and f!='temp.md':
             transone(f)
 
 
