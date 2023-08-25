@@ -7,3 +7,14 @@
     padding: 50px;
     overflow: auto;
 }
+#cmd{
+    width: 100%;
+}
+#output{
+    width:100%;
+    max-height: 300px;
+    min-height: 100px;
+    bottom: 0px;
+    overflow: scroll;
+    border: solid 1px black
+}

@@ -20,7 +20,11 @@ var G = (function () {
         n_force: (d) => { return Math.min(d > Config.eps ? 1 / d / d * Config.n_f : 1 / Config.eps * Config.n_f, Config.n_maxf) },
         c_force: (d) => { return Config.center_f * d },
         t_sw: 100,
-        t_sh: 100
+        t_sh: 100,
+        arrow_offset: 22,
+        arrow_1ength: 10,
+        arrow_width: 5,
+        directioned: false
     };
     var Global = {
         mousefocus: null,
@@ -88,12 +92,41 @@ var G = (function () {
         this.u.es.push(v);
         this.v.es.push(u);
     }
+    Edge.prototype.render = function (ctx) {
+        ctx.beginPath();
+        var offset = Config.node_r / 2 + 3 + 2;
+        ctx.moveTo(this.u.x + offset, this.u.y + offset);
+        ctx.lineTo(this.v.x + offset, this.v.y + offset);
+        ctx.stroke();
+
+
+        if (directioned) {
+            var d = distance(this.u, this.v),
+                k = Config.arrow_offset / d, k2 = (Config.arrow_1ength + Config.arrow_offset) / d,
+                sx = (this.u.x - this.v.x) * k + this.v.x,
+                sy = (this.u.y - this.v.y) * k + this.v.y,
+                gx = (this.u.x - this.v.x) * k2 + this.v.x,
+                gy = (this.u.y - this.v.y) * k2 + this.v.y,
+                hx = gx + (this.v.y - this.u.y) / d * Config.arrow_width,
+                hy = gy + (this.u.x - this.v.x) / d * Config.arrow_width,
+                hx2 = 2 * gx - hx, hy2 = 2 * gy - hy;
+            ctx.beginPath();
+            ctx.moveTo(sx + offset, sy + offset);
+            ctx.lineTo(hx + offset, hy + offset);
+            ctx.lineTo(hx2 + offset, hy2 + offset);
+            ctx.lineTo(sx + offset, sy + offset);
+            ctx.fill();
+        }
+
+        ctx.fillText(this.w, (this.u.x + this.v.x) / 2 + offset, (this.u.y + this.v.y) / 2 + offset);
+    }
     function Graph() {
         this.nodes = [];
         this.edges = [];
         this.timer = 0;
         this.line_canvas = document.createElement('canvas');
         this.ctx = this.line_canvas.getContext('2d');
+        this.poses = {};
         Global.line_canvas = this.line_canvas;
         Global.canvas.appendChild(this.line_canvas);
     }
@@ -143,12 +176,7 @@ var G = (function () {
         this.ctx.font = Config.line_font;
         this.ctx.clearRect(0, 0, Config.c_w, Config.c_h);
         for (var e of this.edges) {
-            this.ctx.beginPath();
-            this.ctx.moveTo(e.u.x + Config.node_r / 2, e.u.y + Config.node_r / 2);
-            this.ctx.lineTo(e.v.x + Config.node_r / 2, e.v.y + Config.node_r / 2);
-            this.ctx.stroke();
-
-            this.ctx.fillText(e.w, (e.u.x + e.v.x + Config.node_r) / 2, (e.u.y + e.v.y + Config.node_r) / 2);
+            e.render(this.ctx);
         }
     }
     Graph.prototype.start = function () {
@@ -156,10 +184,22 @@ var G = (function () {
     }
     Graph.prototype.clear = function () {
         for (var u of this.nodes) {
+            this.poses[u.text] = u
             u.del();
         }
         this.nodes = [];
         this.edges = [];
+    }
+    Graph.prototype.set_poses = function () {
+        for (var u of this.nodes) {
+            if (u.text in this.poses) {
+                u.x = this.poses[u.text].x;
+                u.y = this.poses[u.text].y;
+                u.fixed = this.poses[u.text].fixed;
+                u.state = this.poses[u.text].state;
+                u.dat = this.poses[u.text].dat;
+            }
+        }
     }
 
     function calcwidth(u, f) {
@@ -225,6 +265,7 @@ var G = (function () {
         Node: Node,
         Edge: Edge,
         init: init,
-        setsize: setsize
+        setsize: setsize,
+        Config: Config
     };
 })();
