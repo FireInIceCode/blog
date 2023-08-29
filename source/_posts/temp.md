@@ -1,87 +1,119 @@
-# CF1852B Imbalanced Arrays
+# CF1854E Game Bundles爆搜题解
 
-给一个不需要递归构造的新方法()
+> 给定一个正整数 $m\le 10^{10}$，请你构造一个数组 $a$，长度为 $k$，满足 $\forall 1\le i\le k\le 60,1\le a_i\le 60$，且恰好存在 $m$ 个集合 $S\subset\{1,2,\dots,k\}$，$\sum\limits_{i\in S}a_i=60$ 。
 
-> 对于一个给定的长度为 $n$ 的数组 $A$，定义一个长度为 $n$ 的数组 $B$ 是不平衡的当且仅当以下全部条件满足：
-> 
-> - $-n \leq B_{i} \leq n$ 且 $B_{i} \ne 0$。即每个数在 $[-n,n]$ 内且不为 $0$。
-> 
-> - $\forall i，j \in [1,n]，B_{i} + B_{j} \neq 0$。即数组内不存在一对相反数。
-> 
-> - $\forall i \in [1,n]，\sum_{j = 1}^{n} [ \left (B_{i} + B_{j} \right) > 0] = A_{i}$。即对于任意的 $i$，数组中与 $B_{i}$ 和大于 $0$ 的数的个数恰好为 $A_{i}$。**注意： 这里需要计算本身。也即 $i$ 与 $j$ 可以相等。**
-> 
-> 请构造长度为 $n$ 的不平衡序列。
+因为子集和非常多，能看出可能的解应该非常多，而这个问题看上去很没有靠谱的做法，考虑乱搞。
 
-$b_i$ 要满足 $b_j>-b_i$ 的有恰好 $a_i$ 个，那么显然 $a_i$ 越大，$-b_i$ 就要越小，于是得到结论若 $a_i<a_j$，则 $b_i<b_j$。对于相等的 $a_i$ 显然可以随意钦定顺序。
+于是想到我放 $x$ 个 $1$，再放若干个小于 $60-x$ 的数，这样贡献只能由 $1$ 和一个其他数产生，也就是用 $\binom{x}{i}$ 去凑 $m$，于是从小到大枚举 $x$，爆搜剩下的数，加上朴素的可行性最优性剪枝，发现 testcase 46 搜不出来。问题基本上是，假设用了大量的 $1$，那么搜到细节处时微调的能力就很弱了，因为一调就至少动 $x-1$，导致会和 $m$ 很接近但差一点点，
 
-因为有了 $b$ 的顺序，可以确定每个 $a_i$ 的 $-b_i\in [b_{n-a_i},b_{n-a_i+1}]$，属于同一个区间的 $-b_i$ 又因为已知 $b_i$ 的大小关系而可以确定，于是我们得到了一条包含 $b_i$ 和 $-b_i$ 的大小关系的长 $2n$ 的不等式链，因为一共只有 $2n$ 个数，只要从小到大对应赋值，然后判定是否对应位置为相反数即可。
+于是再加上 $2$，放 $x$ 个 $1$ 和 $2$ 满足它们的和小于 $60$，dp算出 $f_i$ 表示用 $1，2$ 凑出 $i$ 的方案数，但是枚举 $1，2$ 太慢了，直接枚举总数 $x$，随一个 $2$ 的个数，可以搜出只有 $1$ 的部分。但仍然会TLE。
+
+最后想到，从小往大枚举 $x$ 是很劣的，因为刚刚可行(存在一种方案大于 $m$ )的部分在 $m$ 附近的解的数量比较少，所以改成从大到小枚举 $x$，通过。
 
 ```cpp
 #include <algorithm>
+#include <cstdlib>
+#include <cstring>
 #include <iostream>
+#include <map>
 #include <vector>
+#define int long long
 #define endl '\n'
 using namespace std;
 typedef long long ll;
-const int N = 1e5 + 500;
-int n;
-struct P {
-    int i, v;
-} a[N];
-bool cmp(P a, P b) {
-    return a.v < b.v;
-}
-bool cmp2(P a, P b) {
-    return a.i < b.i;
-}
-vector<int> bsep[N];
-int bs[N * 2];
-P b[N];
-void solve() {
-    cin >> n;
-    for (int i = 1; i <= n; i++) {
-        cin >> a[i].v;
-        a[i].i = i;
-    }
-    sort(a + 1, a + 1 + n, cmp);
-    for (int i = 1; i <= n; i++) {
-        bsep[n - a[i].v].push_back(i);
-    }
-    int p = 0;
-    for (int i = 0; i <= n; i++) {
-        if (i > 0)
-            bs[++p] = i;
-        sort(bsep[i].begin(), bsep[i].end(), greater<int>());
-        for (int v : bsep[i]) {
-            bs[++p] = -v;
-        }
-        bsep[i].clear();
-    }
-    int bcnt = 0;
-    for (int i = 1; i <= p; i++) {
-        if (bs[i] != -bs[2 * n - i + 1]) {
-            cout << "NO" << endl;
-            return;
-        }
-        if (bs[i] > 0)
-            b[++bcnt].v = i > n ? i - n : -(n - i + 1);
-    }
-    for (int i = 1; i <= n; i++)
-        b[i].i = a[i].i;
-    sort(b + 1, b + 1 + n, cmp2);
-    cout << "YES" << endl;
-    for (int i = 1; i <= n; i++) {
-        cout << b[i].v << " ";
-    }
-    cout << endl;
-}
+typedef pair<int, int> pii;
 
-int main() {
+const int N = 10010, M = 10000;
+int arr[100];
+map<ll, int> st;
+bool done = false;
+ll f[100], d[100];
+int tcnt, mx;
+
+void dfs(int i, ll s, int k, int li) {
+    if (done)
+        return;
+    if (s > f[d[li]] * (60 - k - i))
+        return;
+    if (s == 0) {
+        cout << i + k - 1 << endl;
+        for (int j = 1; j < i; j++)
+            cout << arr[j] << " ";
+        for (int j = 1; j <= k - tcnt; j++)
+            cout << 1 << " ";
+        for (int j = 1; j <= tcnt; j++)
+            cout << 2 << " ";
+        cout << endl;
+        done = true;
+    }
+    if (i >= 60 - k)
+        return;
+    for (int j = li; j >= 0; j--) {
+        arr[i] = 60 - d[j];
+        ll ns = s - f[d[j]];
+        if (ns == s || ns < 0 || st.count(ns) && st[ns] <= i)
+            continue;
+        st[ns] = i;
+        dfs(i + 1, ns, k, j);
+    }
+}
+bool cmp(int a, int b) {
+    return f[a] < f[b];
+}
+ll bino[100][100];
+ll binom(int n, int k) {
+    if (k > n)
+        return 0;
+    return bino[n][k];
+}
+signed main() {
     ios::sync_with_stdio(false);
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
+    cin.tie(nullptr);
+    ll m;
+    cin >> m;
+    for (int i = 0; i <= 60; i++) {
+        for (int j = 0; j <= 60; j++) {
+            if (j == 0) {
+                bino[i][j] = 1;
+                continue;
+            }
+            if (i == 0) {
+                bino[i][j] = 0;
+                continue;
+            }
+            bino[i][j] = bino[i - 1][j] + bino[i - 1][j - 1];
+            if (bino[i][j] > m)
+                bino[i][j] = m + 1;
+        }
+    }
+    for (int i = 60; i >= 1; i--) {
+        for (int _ = 1; _ <= 10; _++) {
+            int j = rand() % i;
+            if (i + j > 60)
+                continue;
+            f[0] = 1;
+            memset(d, 0, sizeof(d));
+            mx = 0;
+            int dcnt = 0;
+            for (int k = 1; k < 60 - i - j; k++) {
+                __int128 x = 0;
+                for (int l = 0; l <= min(k / 2, j); l++) {
+                    x = x + (__int128)binom(j, l) * binom(i - j, k - 2 * l);
+                }
+                f[k] = (x > m ? m + 1 : x);
+                mx = max(mx, f[k]);
+                if (f[k])
+                    d[k] = k, dcnt = k;
+            }
+            sort(d + 1, d + 1 + dcnt, cmp);
+            tcnt = j;
+            if (mx * (60 - i) < m)
+                continue;
+            dfs(1, m, i, dcnt);
+            if (done)
+                return 0;
+            st.clear();
+        }
     }
     return 0;
 }

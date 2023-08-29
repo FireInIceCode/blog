@@ -38,9 +38,12 @@ function render(){
             if(arr[i][j]){
                 ctx.beginPath();
                 ctx.arc(bd+j*size,bd+i*size,size/3,0,Math.PI*2);
+                ctx.stroke();
                 ctx.save();
                 ctx.clip();
-                ctx.drawImage(img[arr[i][j]],bd+j*size-size/3,bd+i*size-size/3,size/3*2,size/3*2);
+                ctx.fillStyle=arr[i][j]==BLACK?"black":"white";
+                ctx.fillRect(0,0,canvas.width,canvas.height);
+                // ctx.drawImage(img[arr[i][j]],bd+j*size-size/3,bd+i*size-size/3,size/3*2,size/3*2);
                 ctx.restore();
             }
         }
