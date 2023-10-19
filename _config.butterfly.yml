@@ -96,7 +96,7 @@ index_img: /img/bg.png
 default_top_img: 
 
 # The banner image of archive page
-archive_img: /img/bg.png
+archive_img: https://t.mwm.moe/fj
 
 # If the banner of tag page not setting, it will show the top_img
 # note: tag page, not tags page (子標籤頁面的 top_img)
@@ -119,8 +119,8 @@ category_per_img:
 cover:
   # display the cover or not (是否顯示文章封面)
   index_enable: true
-  aside_enable: true
-  archives_enable: true
+  aside_enable: false
+  archives_enable: false
   # the position of cover in home page (封面顯示的位置)
   # left/right/both
   position: both
@@ -128,6 +128,7 @@ cover:
   default_cover:
     # - https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg
     # - https://api.yimian.xyz/img?type=moe
+    - https://t.mwm.moe/fj
 
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:
