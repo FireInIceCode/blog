@@ -7,3 +7,4 @@ public/
 .deploy*/
 _multiconfig.yml
 .deploy_git/*
+/source/_posts/temp.md
