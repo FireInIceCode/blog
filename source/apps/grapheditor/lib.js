@@ -24,7 +24,7 @@ var G = (function () {
         arrow_offset: 22,
         arrow_1ength: 10,
         arrow_width: 5,
-        directioned: false
+        directioned: true
     };
     var Global = {
         mousefocus: null,
@@ -100,7 +100,7 @@ var G = (function () {
         ctx.stroke();
 
 
-        if (directioned) {
+        if (Config.directioned) {
             var d = distance(this.u, this.v),
                 k = Config.arrow_offset / d, k2 = (Config.arrow_1ength + Config.arrow_offset) / d,
                 sx = (this.u.x - this.v.x) * k + this.v.x,
@@ -213,10 +213,10 @@ var G = (function () {
         if (u.dat.width) u.dat.width -= Config.t_sw;
     }
     function treehelper(u, f) {
-        var x = u.x - u.dat.width / 2 + Config.node_r;
+        var x = u.x - u.dat.width / 2;
         for (var v of u.es) {
             if (v == f) continue;
-            v.x = x;
+            v.x = x+v.dat.width/2;
             v.y = u.y + Config.t_sh;
             x += v.dat.width + Config.t_sw;
             treehelper(v, u);
