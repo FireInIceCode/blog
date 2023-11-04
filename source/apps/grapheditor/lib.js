@@ -52,16 +52,19 @@ var G = (function () {
             Global.mousefocus = this;
             Global.mouseoffsetx = -e.x + this.x;
             Global.mouseoffsety = -e.y + this.y;
+            e.stopPropagation();
         }).bind(this));
         this.el.addEventListener('mouseup', (function (e) {
             if (e.button != 1) return;
             this.fixed ^= 1;
             this.el.classList.toggle('gfixed');
+            e.stopPropagation();
         }).bind(this));
 
         this.el.addEventListener('mouseup', (function (e) {
             if (e.button != 2) return;
             this.toggle_state();
+            e.stopPropagation();
         }).bind(this));
         this.el.addEventListener('contextmenu', function (e) {
             e.preventDefault();
@@ -72,9 +75,9 @@ var G = (function () {
         this.state = (this.state + 1) % Config.state_names.length;
         this.el.classList.add(Config.state_names[this.state]);
     }
-    Node.prototype.render = function () {
-        this.el.style.left = this.x + 'px';
-        this.el.style.top = this.y + 'px';
+    Node.prototype.render = function (tx,ty) {
+        this.el.style.left = this.x + tx + 'px';
+        this.el.style.top = this.y + ty + 'px';
         this.el.innerHTML = this.text;
         this.el.style.lineHeight = this.el.style.width = this.el.style.height = Config.node_r + 'px';
     }
@@ -92,7 +95,8 @@ var G = (function () {
         this.u.es.push(v);
         this.v.es.push(u);
     }
-    Edge.prototype.render = function (ctx) {
+    Edge.prototype.render = function (ctx, tx, ty) {
+        ctx.translate(tx, ty);
         ctx.beginPath();
         var offset = Config.node_r / 2 + 3 + 2;
         ctx.moveTo(this.u.x + offset, this.u.y + offset);
@@ -119,6 +123,7 @@ var G = (function () {
         }
 
         ctx.fillText(this.w, (this.u.x + this.v.x) / 2 + offset, (this.u.y + this.v.y) / 2 + offset);
+        ctx.translate(-tx, -ty);
     }
     function Graph() {
         this.nodes = [];
@@ -127,6 +132,8 @@ var G = (function () {
         this.line_canvas = document.createElement('canvas');
         this.ctx = this.line_canvas.getContext('2d');
         this.poses = {};
+        this.tx = 0;
+        this.ty = 0;
         Global.line_canvas = this.line_canvas;
         Global.canvas.appendChild(this.line_canvas);
     }
@@ -169,14 +176,14 @@ var G = (function () {
         }
 
         for (var u of this.nodes) {
-            u.render();
+            u.render(this.tx, this.ty);
         }
         this.ctx.lineWidth = Config.line_width;
         this.ctx.strokeStyle = Config.line_style;
         this.ctx.font = Config.line_font;
         this.ctx.clearRect(0, 0, Config.c_w, Config.c_h);
         for (var e of this.edges) {
-            e.render(this.ctx);
+            e.render(this.ctx, this.tx, this.ty);
         }
     }
     Graph.prototype.start = function () {
@@ -216,7 +223,7 @@ var G = (function () {
         var x = u.x - u.dat.width / 2;
         for (var v of u.es) {
             if (v == f) continue;
-            v.x = x+v.dat.width/2;
+            v.x = x + v.dat.width / 2;
             v.y = u.y + Config.t_sh;
             x += v.dat.width + Config.t_sw;
             treehelper(v, u);
@@ -251,9 +258,21 @@ var G = (function () {
         Global.graph.start();
         Global.canvas.addEventListener('mousemove', (function (e) {
             if (!Global.mousefocus) return;
-            Global.mousefocus.x = e.x + Global.mouseoffsetx;
-            Global.mousefocus.y = e.y + Global.mouseoffsety;
-            Global.mousefocus.render();
+            if (Global.mousefocus instanceof Graph) {
+                Global.mousefocus.tx = e.x + Global.mouseoffsetx;
+                Global.mousefocus.ty = e.y + Global.mouseoffsety;
+            } else {
+                Global.mousefocus.x = e.x + Global.mouseoffsetx;
+                Global.mousefocus.y = e.y + Global.mouseoffsety;
+                Global.mousefocus.render();
+            }
+        }));
+        Global.canvas.addEventListener('mousedown',(function(e){
+            if(Global.mousefocus)return;
+            if(e.button!=0)return;
+            Global.mousefocus=Global.graph;
+            Global.mouseoffsetx=Global.graph.tx-e.x;
+            Global.mouseoffsety=Global.graph.ty-e.y;
         }));
         Global.canvas.addEventListener('mouseup', (function (e) {
             Global.mousefocus = null;
