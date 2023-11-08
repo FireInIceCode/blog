@@ -23,4 +23,4 @@ tags:
 - P5666 线段树合并怎么会有人想到写 $x&y==0$ 判断是否有一个是空? /fn, 动态开点编号多测没清空/fn
 - P5021 multiset erase(iter)会删除一个元素, erase(value)会删除所有等于这个值的元素.
 - P4606 圆方树点数最大是图的两倍, 点双弹栈连放点时不是"删到栈顶为 $u$"而是"直到把 $v$ 删掉"(指处理 $u\to v$ 这条边)
-- nfls vector,deque pushback后迭代器失效(重新分配空间)
+- nfls vector, deque pushback后迭代器失效(重新分配空间)
