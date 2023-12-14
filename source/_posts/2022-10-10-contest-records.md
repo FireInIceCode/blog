@@ -8,7 +8,6 @@ tags:
 - 杂项
 - 日志
 - 咕咕
-password: boomedzero
 cover: /img/2022-11-23-20-19-22-image.png
 
 ---
