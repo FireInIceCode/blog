@@ -6,7 +6,6 @@ show: false
 top: 0
 tags: 
 - dp
-- 笔记
 - 集训
 ---
 

@@ -5,9 +5,8 @@ layout: post
 show: true
 top: 0
 tags: 
-- 杂项
+- 杂题
 - 日志
-- 咕咕
 cover: /img/2022-11-23-20-19-22-image.png
 
 ---

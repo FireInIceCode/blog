@@ -7,7 +7,6 @@ top: 0
 tags:
 
 - 日志
-- 笔记
 - 集训
 
 cover: /img/2022-11-23-20-23-06-image.png

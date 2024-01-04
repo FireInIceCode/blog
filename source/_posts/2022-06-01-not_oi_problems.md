@@ -5,7 +5,7 @@ layout: post
 show: false
 top: 0
 tags: 
-- 杂项
+- 杂题
 - 数学
 ---
 

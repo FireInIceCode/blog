@@ -6,8 +6,7 @@ show: false
 top: 0
 tags: 
 - 日志
-- 咕咕
-- noi
+- 杂题
 ---
 
 # NOI系列刷题
