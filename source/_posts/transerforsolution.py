@@ -1,3 +1,5 @@
+# now it's useless code,use chatgpt!
+
 import os
 import re
 
@@ -64,4 +66,14 @@ def transone(name):
 
 
 
-transone('./temp.md')
+def main():
+    s=""
+    l=input()
+    while l!='@ed':
+        s=s+l+'\n'
+        l=input()
+    s=transstr(s)
+    for i in s.split('\n'):
+        print(i)
+
+main()
