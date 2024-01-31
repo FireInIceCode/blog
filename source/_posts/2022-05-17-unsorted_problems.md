@@ -651,7 +651,7 @@ $$
 > 
 > $n, q\le 2\times 10^5$
 
-设 $c_i=a_i\operatorname{xor} b_i$ , 就成了从全 $0$ 变成 $c$ 的次数.
+设 $c_i=a_i\mathrm{xor} b_i$ , 就成了从全 $0$ 变成 $c$ 的次数.
 
 然后因为区间异或想到差分数组设为 $d$ , 每次修改 $d$ 的两个位置.
 
@@ -802,7 +802,7 @@ $f_{d, v, 0/1}$ 表示这样的子树, 有没有选根即可. $n^2$ .
 
 #### D. Moscow Gorillas
 
-> 给定排列 $a_n, b_n$, 求有多少个区间 $[l, r]$ 满足 $\operatorname{mex}(a_l\ldots, a_r)=\operatorname{mex}(b_l\ldots, b_r)$
+> 给定排列 $a_n, b_n$, 求有多少个区间 $[l, r]$ 满足 $\mathrm{mex}(a_l\ldots, a_r)=\mathrm{mex}(b_l\ldots, b_r)$
 > 
 > $n\le 2\times 10^5$
 

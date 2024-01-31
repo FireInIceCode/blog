@@ -163,7 +163,7 @@ wjw看了看slime的做法, 说的是直接贪心求匹配(任意加边), 如果
 > 
 > $\sum n\le 10^5$
 
-把每一个数看作向量, $\gcd$ 是对向量每个元素取 $\min$ , 考虑如果你的向量 $b_i$ 的一个元素同时比 $a_i$ 和 $a_{i-1}$ 的对应元素大, 那么一定是不优的(你不能用它做取 $\min$ 了). 所以结论是 $b_i=\operatorname{lcm}{a_i, a_{i-1}}$ , 然后有可能不行, 所以再 check 一遍.
+把每一个数看作向量, $\gcd$ 是对向量每个元素取 $\min$ , 考虑如果你的向量 $b_i$ 的一个元素同时比 $a_i$ 和 $a_{i-1}$ 的对应元素大, 那么一定是不优的(你不能用它做取 $\min$ 了). 所以结论是 $b_i=\mathrm{lcm}{a_i, a_{i-1}}$ , 然后有可能不行, 所以再 check 一遍.
 
 ### C1. Good Subarrays (Easy Version)
 
@@ -449,7 +449,7 @@ $$
 诈骗题(但被诈骗了), 只要考虑 $(1, 1), (1, n), (n, n), (n, 1)$ 四个位置的棋子要移过去要满足的条件是八个位置(固定的)中的一个没有障碍, 而其他棋子都可以通过这种方式移动走.
 
 ### B. path
-> 给定 $Graph(n, m)$, 边有边权, $q$ 次询问 $u\to v$ 路径上边权序列的前缀与形成的集合的 $\operatorname{mex}$.
+> 给定 $Graph(n, m)$, 边有边权, $q$ 次询问 $u\to v$ 路径上边权序列的前缀与形成的集合的 $\mathrm{mex}$.
 > 
 > $n, q\le 10^5, m\le 5\times 10^5$
 
@@ -461,7 +461,7 @@ $$
 
 ### C. sequence
 
-> 给定 $a_n$, $q$ 次单点修改或者询问区间最小的 $a_i\operatorname{or} a_j, i\ne j$.
+> 给定 $a_n$, $q$ 次单点修改或者询问区间最小的 $a_i\mathrm{or} a_j, i\ne j$.
 > 
 > $n, q\le 10^5$
 
@@ -469,7 +469,7 @@ Source: CF1665E
 
 结论题.
 
-[trick] 值域小于 $2^k$ 的数中选两个数 $\operatorname{or}$ 起来最小值出现在前 $k+1$ 个里.
+[trick] 值域小于 $2^k$ 的数中选两个数 $\mathrm{or}$ 起来最小值出现在前 $k+1$ 个里.
 
 考虑归纳,如果第$k$位有$2$个$0$,那么一定选$0$,剩下的是前$k-1$情况下的最小值.否则第$k$位最后是$1$,只要最小化前$k-1$位,对应了前$k-1$位的最小值和这一位是$1$的数中的最小值.
 
@@ -477,7 +477,7 @@ Source: CF1665E
 
 ### D. color
 
-> 给定 $Tree(n)$, 点有颜色 $c_i$, 求 $\sum_i ((\sum_j s(i, j)) \operatorname{xor} i)$, 其中 $s(i, j)$ 表示从 $i$ 到 $j$ 的颜色数.
+> 给定 $Tree(n)$, 点有颜色 $c_i$, 求 $\sum_i ((\sum_j s(i, j)) \mathrm{xor} i)$, 其中 $s(i, j)$ 表示从 $i$ 到 $j$ 的颜色数.
 > 
 > $n\le 10^6$
 
@@ -627,9 +627,9 @@ $k=2n-1$ 时, 存在情况 $n-1$ 个栈大小为 $2$, 又出现一个新的元�
 
 ### CF1696D
 
-> 给出一个 $1$ 到 $n$ 的排列 $[a_1, a_2, \dots, a_n]$ . 对于 $1\le i < j\le n$ , 记 $\operatorname{mn}(i, j)$ 为 $\min\limits_{k=i}^j a_k$ , 记  $\operatorname{mx}(i, j)$ 为 $\max\limits_{k=i}^j a_k$ .
+> 给出一个 $1$ 到 $n$ 的排列 $[a_1, a_2, \dots, a_n]$ . 对于 $1\le i < j\le n$ , 记 $\mathrm{mn}(i, j)$ 为 $\min\limits_{k=i}^j a_k$ , 记  $\mathrm{mx}(i, j)$ 为 $\max\limits_{k=i}^j a_k$ .
 > 
-> 有一张 $n$ 个点的无向图, 点的编号为 $1$ 到 $n$ . 对于每一对整数 $1\le i<j\le n$ , 如果同时满足 $\operatorname{mn}(i, j)=a_i$ 且 $\operatorname{mx}(i, j)=a_j$ , 或同时满足 $\operatorname{mn}(i, j)=a_j$ 和 $\operatorname{mx}(i, j)=a_i$ , 那么就在 $i$ 和 $j$ 之间连一条长度为 $1$ 的边.
+> 有一张 $n$ 个点的无向图, 点的编号为 $1$ 到 $n$ . 对于每一对整数 $1\le i<j\le n$ , 如果同时满足 $\mathrm{mn}(i, j)=a_i$ 且 $\mathrm{mx}(i, j)=a_j$ , 或同时满足 $\mathrm{mn}(i, j)=a_j$ 和 $\mathrm{mx}(i, j)=a_i$ , 那么就在 $i$ 和 $j$ 之间连一条长度为 $1$ 的边.
 > 
 > 询问这张图中从 $1$ 到 $n$ 的最短路的长度. 可以证明 $1$ 和 $n$ 总是连通, 所以最短路总是存在.
 > 
@@ -656,7 +656,7 @@ $k=2n-1$ 时, 存在情况 $n-1$ 个栈大小为 $2$, 又出现一个新的元�
 > 给定 $n$ 个数, 求有多少种方案选择两个不交的集合, 使它们元素的异或和相等.
 > $n\le 10^6$
 
-等价于求 $\sum_{T\in S} 2^{\vert T\vert}[\operatorname{xor}_i T_i = 0]$, 也就是 $\prod_i (1+2x^{a_i})$.
+等价于求 $\sum_{T\in S} 2^{\vert T\vert}[\mathrm{xor}_i T_i = 0]$, 也就是 $\prod_i (1+2x^{a_i})$.
 
 考虑 $(1+2x^{a_i})$ 的FWT, $1$ 对每个位置贡献 $1$, $a_i$ 对每个位置贡献 $\pm 2$, 位置 $T$ 的符号取决于 $S\cap T$ 的奇偶性. 于是要对所有 $S$ 统计 $\vert T\cap S\vert$ 是偶数. 因为有奇偶性仍然只能用FWT, 考虑做$\sum_i x^a_i$的FWT, 得到的是偶数减奇数, 又因为知道总数就能解出来了.
 
@@ -736,7 +736,7 @@ $$
 
 ### Graph
 
-> 给定 $Graph(n, m)$, $a_n$, $C$, 求有多少 $b_n$ 满足 $b_i\in[0, a_i]; \forall u\to v, b_u\ne b_v; \operatorname{Xor}_i b_i =C$
+> 给定 $Graph(n, m)$, $a_n$, $C$, 求有多少 $b_n$ 满足 $b_i\in[0, a_i]; \forall u\to v, b_u\ne b_v; \mathrm{Xor}_i b_i =C$
 > 
 > 膜998244353, $n\le 15, a_i, C\le 10^18$
 
@@ -1025,7 +1025,7 @@ T1, T2简单题, T4是CF1119F(不会了菜了)
 > 
 > 由于答案可能很大, 只需输出对 $2^{64}$ 取模的结果.
 
-首先考虑对于同一个字符串的两个后缀, 这个绝对代价是什么. 那么考虑反着跑KMP得到每个后缀的border, 然后 $i$ 向 $border_i$ 连边得到一棵树, 记 $dep_u$ 为根到 $u$ 的链上的字符串总长和, 那么绝对代价就是 $\max dep_a, dep_b -\operatorname{lca}(a, b)$. 感觉这个模型应该很经典但我没做过这种啊()
+首先考虑对于同一个字符串的两个后缀, 这个绝对代价是什么. 那么考虑反着跑KMP得到每个后缀的border, 然后 $i$ 向 $border_i$ 连边得到一棵树, 记 $dep_u$ 为根到 $u$ 的链上的字符串总长和, 那么绝对代价就是 $\max dep_a, dep_b -\mathrm{lca}(a, b)$. 感觉这个模型应该很经典但我没做过这种啊()
 
 那么考虑怎么做 $c=1$, 把刚才那个东西分开做, 则一部分要求每个点是多少个点的lca, 可以是 $\sum (siz_u^2-\sum_{v\in son_u} siz_v^2)dep_u=\sum siz_u^2(dep_u-dep_{fa})$, 一部分求比这个点 $dep$ 小的有多少个即可.
 
@@ -1108,8 +1108,8 @@ $$
 f_{i, j}=
 \begin{cases}
     f_{i-1, j}=[i-1\to i], if\ j\notin \{i, i-1\}\\
-    f_{i-1, k}\ \operatorname{and}\ [k\to i], if\ j=i-1\\
-    f_{i-1, k}\ \operatorname{and}\ [k\to i]\ \operatorname{and}\ [i-1\to i], if\ j=i
+    f_{i-1, k}\ \mathrm{and}\ [k\to i], if\ j=i-1\\
+    f_{i-1, k}\ \mathrm{and}\ [k\to i]\ \mathrm{and}\ [i-1\to i], if\ j=i
 \end{cases}
 $$
 

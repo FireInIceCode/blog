@@ -123,8 +123,8 @@ $n$ 为点数, $m$ 为边数, 先假设图为**联通**的(显然不联通没有
 ```cpp
 #include<iostream>
 using namespace std;
-const int N=5e5+500,M=5e6+500,INF=1e
-// #define int long long;
+const int N=5e5+500,M=5e6+500,INF=1e9
+#define int long long
 
 struct Edge{
     int u,v,w,c,next;

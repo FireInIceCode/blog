@@ -114,9 +114,9 @@ PAM和回文树科技,没听懂.
 
 先不考虑旋转看我们能不能算答案.
 
-显然桌子上每个矩形是独立的,考虑计算一个的 $sg_i=\operatorname{mex} sg_j$ 值,因为小于的传递性,所以 $sg_i\ge sg_j$ .于是 $sg_i=\max_j sg_j +1$ ,是二维数点.两遍把旋转前后的都求出来,记一个矩形旋转前后的值为 $a_i,b_i$ 
+显然桌子上每个矩形是独立的,考虑计算一个的 $sg_i=\mathrm{mex} sg_j$ 值,因为小于的传递性,所以 $sg_i\ge sg_j$ .于是 $sg_i=\max_j sg_j +1$ ,是二维数点.两遍把旋转前后的都求出来,记一个矩形旋转前后的值为 $a_i,b_i$ 
 
-若 $v=sg_1\operatorname{xor}sg_2\operatorname{xor}...$ ,每个矩形实际权值为 $a_i\operatorname{xor}b_i$ ,选择若干矩形异或和为 $v$ ,线性基即可.
+若 $v=sg_1\mathrm{xor}sg_2\mathrm{xor}...$ ,每个矩形实际权值为 $a_i\mathrm{xor}b_i$ ,选择若干矩形异或和为 $v$ ,线性基即可.
 
 #### Knights of Round Table
 
@@ -238,7 +238,7 @@ $n\le 3000,l\le 10^9$ .
 > 
 > - 若 $2x\in S$ ,将 $x$ 加入
 > 
-> - 若 $x,y\in S$ ,将 $x\operatorname{xor} y$ 加入.
+> - 若 $x,y\in S$ ,将 $x\mathrm{xor} y$ 加入.
 > 
 > $f(S)$ 表示 $S$ 操作后得到最小的数,给定长度为 $n$ 的序列,单点修改或询问区间 $f$ .
 > 
