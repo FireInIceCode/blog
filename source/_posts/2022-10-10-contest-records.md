@@ -688,7 +688,7 @@ $k=2n-1$ 时, 存在情况 $n-1$ 个栈大小为 $2$, 又出现一个新的元�
 
 ### Matrix
 
-> 给定 $n\times n$ 矩阵 $A, B, C$, 判断是否 $A\times B=C \pmod 998244353$
+> 给定 $n\times n$ 矩阵 $A, B, C$, 判断是否 $A\times B=C \pmod {998244353}$
 > 
 > $n\le 3000$
 
@@ -738,7 +738,7 @@ $$
 
 > 给定 $Graph(n, m)$, $a_n$, $C$, 求有多少 $b_n$ 满足 $b_i\in[0, a_i]; \forall u\to v, b_u\ne b_v; \mathrm{Xor}_i b_i =C$
 > 
-> 膜998244353, $n\le 15, a_i, C\le 10^18$
+> 膜998244353, $n\le 15, a_i, C\le 10^{18}$
 
 考虑 $m=0$, 考虑从高到低第一位使得 $\exists b_i\ne a_i$, 那么以后的部分其他 $i$ 怎么选都可以用这个调对, 枚举这一位即可, 复杂度是 $n\log w$.
 
