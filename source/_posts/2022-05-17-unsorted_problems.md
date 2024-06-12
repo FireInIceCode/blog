@@ -3,7 +3,7 @@ title: 杂题(tricks)
 subtitle: 碎碎题
 layout: post
 show: true
-top: 1
+top: 0
 tags: 
 - 日志
 - 杂题
